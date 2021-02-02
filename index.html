@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive Image Slider | With Manual Buttons and Autoplay Navigation Visibility</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <div class="img-slider">
+    <div class="slide active">
+      <img src="D:\CSS Micro Project\wallpaperflare.com_wallpaper (1).jpg" alt="">
+      <div class="info">
+        <h2>Sri Harmandir Sahib</h2>
+        <p>The Golden Temple, also known as Harmandir Sahib, meaning "abode of God" or Darbār Sahib, meaning "exalted
+          court", is a gurdwara located in the city of Amritsar, Punjab, India. It is the preeminent spiritual site of
+          Sikhism.</p>
+      </div>
+    </div>
+    <div class="slide">
+      <img src="D:\CSS Micro Project\wallpaperflare.com_wallpaper (2).jpg" alt="">
+      <div class="info">
+        <h2>Taj Mahal</h2>
+        <p>The Taj Mahal is an ivory-white marble mausoleum on the southern bank of the river Yamuna in the Indian city
+          of Agra. It was commissioned in 1632 by the Mughal emperor Shah Jahan to house the tomb of his favourite wife,
+          Mumtaz Mahal; it also houses the tomb of Shah Jahan himself.</p>
+      </div>
+    </div>
+    <div class="slide">
+      <img src="D:\CSS Micro Project\wallpaperflare.com_wallpaper (3).jpg" alt="">
+      <div class="info">
+        <h2>Gateway Of India Mumbai</h2>
+        <p>The Gateway of India is an arch-monument built in the early twentieth century in the city of Mumbai, in the
+          Indian state of Maharashtra. It was erected to commemorate the landing in December 1911 at Apollo Bunder,
+          Mumbai of King-Emperor George V and Queen-Empress Mary, the first British monarch to visit India.</p>
+      </div>
+    </div>
+    <div class="slide">
+      <img src="D:\CSS Micro Project\wallpaperflare.com_wallpaper (4).jpg" alt="">
+      <div class="info">
+        <h2>Charminar</h2>
+        <p>The Charminar, constructed in 1591, is a monument and mosque located in Hyderabad, Telangana, India. The
+          landmark has become known globally as a symbol of Hyderabad and is listed among the most recognized structures
+          in India.</p>
+      </div>
+    </div>
+    <div class="slide">
+      <img src="D:\CSS Micro Project\wallpaperflare.com_wallpaper (5).jpg" alt="">
+      <div class="info">
+        <h2>Howrah Bridge</h2>
+        <p>Howrah Bridge is a balanced cantilever bridge over the Hooghly River in West Bengal, India. Commissioned in
+          1943,[8][10] the bridge was originally named the New Howrah Bridge, because it replaced a pontoon bridge at
+          the same location linking the two cities of Howrah and Kolkata (Calcutta). On 14 June 1965 it was renamed
+          Rabindra Setu after the great Bengali poet Rabindranath Tagore, who was the first Indian and Asian Nobel
+          laureate.[10] It is still popularly known as the Howrah Bridge.</p>
+      </div>
+    </div>
+    <div class="navigation">
+      <div class="btn active"></div>
+      <div class="btn"></div>
+      <!-- Name - Darshan Raykar 
+                                                                               Topic - Responsive Image Slider
+                                                                             Subject Client Side Scripting -->
+      <div class="btn"></div>
+      <div class="btn"></div>
+      <div class="btn"></div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    var slides = document.querySelectorAll('.slide');
+    var btns = document.querySelectorAll('.btn');
+    let currentSlide = 1;
+
+    // Javascript for image slider manual navigation
+    var manualNav = function (manual) {
+      slides.forEach((slide) => {
+        slide.classList.remove('active');
+
+        btns.forEach((btn) => {
+          btn.classList.remove('active');
+        });
+      });
+
+      slides[manual].classList.add('active');
+      btns[manual].classList.add('active');
+    }
+
+    btns.forEach((btn, i) => {
+      btn.addEventListener("click", () => {
+        manualNav(i);
+        currentSlide = i;
+      });
+    });
+
+    // Javascript for image slider autoplay navigation
+    var repeat = function (activeClass) {
+      let active = document.getElementsByClassName('active');
+      let i = 1;
+
+      var repeater = () => {
+        setTimeout(function () {
+          [...active].forEach((activeSlide) => {
+            activeSlide.classList.remove('active');
+          });
+
+          slides[i].classList.add('active');
+          btns[i].classList.add('active');
+          i++;
+
+          if (slides.length == i) {
+            i = 0;
+          }
+          if (i >= slides.length) {
+            return;
+          }
+          repeater();
+        }, 10000);
+      }
+      repeater();
+    }
+    repeat();
+  </script>
+
+</body>
+
+</html>
